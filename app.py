@@ -76,13 +76,58 @@ elif st.session_state.step == 11:
         time.sleep(0.03)
         progress_bar.progress(i + 1)
     
-    # LIBRARY OF RIDICULOUS FACES
-    # Note: These use placeholder links; you can replace these with actual funny face URLs
+    # LARGE LIBRARY OF 50 RIDICULOUS FACES
     funny_faces = [
-        {"url": "https://placedog.net/500/500?id=50", "vibe": "a man with 12 chins and a confused eyebrow"},
-        {"url": "https://placedog.net/500/500?id=60", "vibe": "someone who just smelled a very old lemon"},
-        {"url": "https://placedog.net/500/500?id=70", "vibe": "a person whose face looks like a melting candle of joy"},
-        {"url": "https://placedog.net/500/500?id=80", "vibe": "a high-speed camera shot of someone sneezing"}
+        {"url": "http://googleusercontent.com/image_collection/image_retrieval/13520259614020122899_0", "vibe": "a face of pure, cross-eyed disbelief"},
+        {"url": "http://googleusercontent.com/image_collection/image_retrieval/13520259614020122899_1", "vibe": "someone whose expression suggests they just saw a bird wear a hat"},
+        {"url": "http://googleusercontent.com/image_collection/image_retrieval/13520259614020122899_2", "vibe": "a masterpiece of a squint and a stuck-out tongue"},
+        {"url": "http://googleusercontent.com/image_collection/image_retrieval/13520259614020122899_3", "vibe": "an individual with a truly legendary double-chin and wide eyes"},
+        {"url": "http://googleusercontent.com/image_collection/image_retrieval/13520259614020122899_4", "vibe": "someone making a face like they are trying to solve math with their nose"},
+        {"url": "http://googleusercontent.com/image_collection/image_retrieval/13520259614020122899_5", "vibe": "a face frozen in a chaotic, mid-laugh snort"},
+        {"url": "http://googleusercontent.com/image_collection/image_retrieval/13520259614020122899_6", "vibe": "a person whose expression is 40% surprise and 60% confusion"},
+        {"url": "http://googleusercontent.com/image_collection/image_retrieval/13520259614020122899_7", "vibe": "a look of intense, bulging-eyed suspicion"},
+        {"url": "http://googleusercontent.com/image_collection/image_retrieval/13520259614020122899_8", "vibe": "someone who looks like they are trying to smell their own ears"},
+        {"url": "http://googleusercontent.com/image_collection/image_retrieval/13520259614020122899_9", "vibe": "a person making a face that defies all known anatomy"},
+        {"url": "http://googleusercontent.com/image_collection/image_retrieval/13520259614020122899_10", "vibe": "a legendary pucker that makes their whole head look smaller"},
+        {"url": "http://googleusercontent.com/image_collection/image_retrieval/13520259614020122899_11", "vibe": "someone who just smelled something from the year 1994"},
+        {"url": "http://googleusercontent.com/image_collection/image_retrieval/13520259614020122899_12", "vibe": "a face of absolute, unadulterated shock"},
+        {"url": "http://googleusercontent.com/image_collection/image_retrieval/13520259614020122899_13", "vibe": "a person with an expression of chaotic, bug-eyed joy"},
+        {"url": "http://googleusercontent.com/image_collection/image_retrieval/13520259614020122899_14", "vibe": "someone whose smile is upside down for no apparent reason"},
+        {"url": "http://googleusercontent.com/image_collection/image_retrieval/13520259614020122899_15", "vibe": "a masterpiece of a mid-sneeze squint"},
+        {"url": "http://googleusercontent.com/image_collection/image_retrieval/13520259614020122899_16", "vibe": "an individual who looks like they are being tickled by an invisible ghost"},
+        {"url": "http://googleusercontent.com/image_collection/image_retrieval/13520259614020122899_17", "vibe": "a person with a face like a melting candle of happiness"},
+        {"url": "http://googleusercontent.com/image_collection/image_retrieval/13520259614020122899_18", "vibe": "someone who just realized they left the oven on in another life"},
+        {"url": "http://googleusercontent.com/image_collection/image_retrieval/13520259614020122899_19", "vibe": "a look of pure, unbridled bewilderment"},
+        {"url": "http://googleusercontent.com/image_collection/image_retrieval/13520259614020122899_20", "vibe": "a face that says 'I didn't do it, but I saw who did'"},
+        {"url": "http://googleusercontent.com/image_collection/image_retrieval/13520259614020122899_21", "vibe": "someone trying to lick their own nose with maximum effort"},
+        {"url": "http://googleusercontent.com/image_collection/image_retrieval/13520259614020122899_22", "vibe": "a face of intense, cross-eyed focus on a single fly"},
+        {"url": "http://googleusercontent.com/image_collection/image_retrieval/13520259614020122899_23", "vibe": "an expression of pure, open-mouthed awe at a taco"},
+        {"url": "http://googleusercontent.com/image_collection/image_retrieval/13520259614020122899_24", "vibe": "a person who looks like they are mid-teleportation"},
+        {"url": "http://googleusercontent.com/image_collection/image_retrieval/13520259614020122899_25", "vibe": "a look that combines fear, excitement, and a very itchy chin"},
+        {"url": "http://googleusercontent.com/image_collection/image_retrieval/13520259614020122899_26", "vibe": "someone with a smile that's 15% too wide for their face"},
+        {"url": "http://googleusercontent.com/image_collection/image_retrieval/13520259614020122899_27", "vibe": "a person who just figured out that water is wet"},
+        {"url": "http://googleusercontent.com/image_collection/image_retrieval/13520259614020122899_28", "vibe": "an expression of deep, philosophical confusion over a sock"},
+        {"url": "http://googleusercontent.com/image_collection/image_retrieval/13520259614020122899_29", "vibe": "a face of pure, cross-eyed determination"},
+        {"url": "http://googleusercontent.com/image_collection/image_retrieval/13520259614020122899_30", "vibe": "someone who looks like they are trying to communicate with a toaster"},
+        {"url": "http://googleusercontent.com/image_collection/image_retrieval/13520259614020122899_31", "vibe": "a masterpiece of an eyeroll and a lip-bite"},
+        {"url": "http://googleusercontent.com/image_collection/image_retrieval/13520259614020122899_32", "vibe": "a person with a face like a crumpled-up paper bag of joy"},
+        {"url": "http://googleusercontent.com/image_collection/image_retrieval/13520259614020122899_33", "vibe": "someone who just saw their own reflection for the first time"},
+        {"url": "http://googleusercontent.com/image_collection/image_retrieval/13520259614020122899_34", "vibe": "a look of intense, bulging-eyed curiosity about your hair"},
+        {"url": "http://googleusercontent.com/image_collection/image_retrieval/13520259614020122899_35", "vibe": "a face of absolute, cross-eyed bewilderment at a cloud"},
+        {"url": "http://googleusercontent.com/image_collection/image_retrieval/13520259614020122899_36", "vibe": "someone who looks like they are trying to whistle with their eyes"},
+        {"url": "http://googleusercontent.com/image_collection/image_retrieval/13520259614020122899_37", "vibe": "a person making a face like a very surprised owl"},
+        {"url": "http://googleusercontent.com/image_collection/image_retrieval/13520259614020122899_38", "vibe": "an individual with a face frozen in mid-yawn shock"},
+        {"url": "http://googleusercontent.com/image_collection/image_retrieval/13520259614020122899_39", "vibe": "a face of deep, suspicious squinting at a blueberry"},
+        {"url": "http://googleusercontent.com/image_collection/image_retrieval/13520259614020122899_40", "vibe": "someone who looks like they just solved a mystery that didn't exist"},
+        {"url": "http://googleusercontent.com/image_collection/image_retrieval/13520259614020122899_41", "vibe": "a masterpiece of a side-eye and a smirk"},
+        {"url": "http://googleusercontent.com/image_collection/image_retrieval/13520259614020122899_42", "vibe": "a person whose face is 70% eyebrows and 30% panic"},
+        {"url": "http://googleusercontent.com/image_collection/image_retrieval/13520259614020122899_43", "vibe": "someone who looks like they are trying to taste the air with their forehead"},
+        {"url": "http://googleusercontent.com/image_collection/image_retrieval/13520259614020122899_44", "vibe": "a look of pure, wide-eyed amazement at a spoon"},
+        {"url": "http://googleusercontent.com/image_collection/image_retrieval/13520259614020122899_45", "vibe": "a person making a face like they are auditioning for a role as a gargoyle"},
+        {"url": "http://googleusercontent.com/image_collection/image_retrieval/13520259614020122899_46", "vibe": "an expression of intense, cross-eyed focus on a speck of dust"},
+        {"url": "http://googleusercontent.com/image_collection/image_retrieval/13520259614020122899_47", "vibe": "someone who looks like they just heard a joke from the year 3000"},
+        {"url": "http://googleusercontent.com/image_collection/image_retrieval/13520259614020122899_48", "vibe": "a face of deep, philosophical pondering over a paperclip"},
+        {"url": "http://googleusercontent.com/image_collection/image_retrieval/13520259614020122899_49", "vibe": "someone whose face is a chaotic blend of joy, fear, and a sneeze"}
     ]
     
     selected = random.choice(funny_faces)
@@ -109,3 +154,4 @@ elif st.session_state.step == 12:
     st.write(st.session_state.oracle_msg)
     st.write("Compatibility Score: **99.9%**")
     if st.button("🔄 Clear & Restart"): reset()
+
