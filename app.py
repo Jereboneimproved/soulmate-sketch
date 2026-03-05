@@ -95,7 +95,7 @@ elif st.session_state.step == 11:
     character_library = [
         {"name": "Chucky", "url": "https://miro.medium.com/v2/resize:fit:1100/format:webp/0*q7vXds1n1-bYshJv.jpg", "vibe": "a tiny, stabby ginger doll"},
         {"name": "Jason Voorhees", "url": "https://upload.wikimedia.org/wikipedia/en/f/f7/Jason_Voorhees_%28Ken_Kirzinger%29.jpg", "vibe": "a hockey fan who never learned to swim"},
-        {"name": "Michael Myers", "url": "hhttps://upload.wikimedia.org/wikipedia/en/e/e9/MichaelMyers2018.jpg", "vibe": "a very quiet man in a painted William Shatner mask"},
+        {"name": "Michael Myers", "url": "https://upload.wikimedia.org/wikipedia/en/e/e9/MichaelMyers2018.jpg", "vibe": "a very quiet man in a painted William Shatner mask"},
         {"name": "Freddy Krueger", "url": "https://upload.wikimedia.org/wikipedia/en/e/eb/Freddy_Krueger_%28Robert_Englund%29.jpg", "vibe": "the ultimate dream-crashing burnt pizza man"},
         {"name": "Killer Clown", "url": "https://bloody-disgusting.com/wp-content/uploads/2015/08/Pennywise.jpg", "vibe": "a circus reject with bad intentions"},
         {"name": "Blacula", "url": "https://static.wikia.nocookie.net/monster-and-slashers/images/9/9d/Blacula_%282%29ac.JPG/revision/latest?cb=20190804034633", "vibe": "the smoothest vampire in the history of the night"},
@@ -143,6 +143,7 @@ elif st.session_state.step == 12:
     
     if st.button("🔄 Clear & Restart"):
         reset()
+
 
 
 
