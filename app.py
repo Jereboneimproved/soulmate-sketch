@@ -100,13 +100,13 @@ elif st.session_state.step == 11:
         {"name": "Killer Clown", "url": "https://bloody-disgusting.com/wp-content/uploads/2015/08/Pennywise.jpg", "vibe": "a circus reject with bad intentions"},
         {"name": "Blacula", "url": "https://static.wikia.nocookie.net/monster-and-slashers/images/9/9d/Blacula_%282%29ac.JPG/revision/latest?cb=20190804034633", "vibe": "the smoothest vampire in the history of the night"},
         {"name": "Klingon", "url": "https://upload.wikimedia.org/wikipedia/en/e/ed/WorfTNG.jpg", "vibe": "a warrior who takes dating very, very seriously"},
-        {"name": "Pizza the Hutt", "url": "https://villains.fandom.com/wiki/Pizza_the_Hutt?file=HuttHD.jpg", "vibe": "literally a giant, melting pepperoni pizza"},
+        {"name": "Pizza the Hutt", "url": "https://static.wikia.nocookie.net/villains/images/3/3a/HuttHD.jpg", "vibe": "literally a giant, melting pepperoni pizza"},
         {"name": "Pee Wee Herman", "url": "https://upload.wikimedia.org/wikipedia/commons/8/8e/Pee-Wee_Herman_%281988%29.jpg", "vibe": "a man who loves his bike more than life itself"},
         {"name": "Chewbacca", "url": "https://specials-images.forbesimg.com/dam/imageserve/958761228/960x0.jpg", "vibe": "a walking carpet with a heart of gold"},
         {"name": "Angela Bassett", "url": "https://variety.com/wp-content/uploads/2024/09/JCO_7588_a3bd08.jpg", "vibe": "the most tremendous soulmate you've ever seen, believe me"},
         {"name": "Tyrone Biggums", "url": "https://comicvine.gamespot.com/a/uploads/original/2/29172/562318-tyrone_biggums2.jpg", "vibe": "a man who desperately needs sizzle candy"},
         {"name": "Captain Jack Sparrow", "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Captain_Jack_Sparrow_%285763467649%29.jpg/1280px-Captain_Jack_Sparrow_%285763467649%29.jpg", "vibe": "you have a ridiculously high regard for fate, mate"},
-        {"name": "Diva Plavalaguna", "url": "https://www.reddit.com/media?url=https%3A%2F%2Fi.redd.it%2Fjcsw4h2ifksd1.jpeg", "vibe": "She needs your help and your ______"},
+        {"name": "Diva Plavalaguna", "url": "https://i.redd.it/jcsw4h2ifksd1.jpeg", "vibe": "She needs your help and your ______"},
         {"name": "Ghost Face", "url": "https://static.wikia.nocookie.net/scream/images/a/a5/Ghostface-Profile.jpg", "vibe": "What's your favorite movie?"}
     ]
     
@@ -143,6 +143,7 @@ elif st.session_state.step == 12:
     
     if st.button("🔄 Clear & Restart"):
         reset()
+
 
 
 
