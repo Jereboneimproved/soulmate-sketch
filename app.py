@@ -2,8 +2,6 @@ import streamlit as st
 import google.generativeai as genai
 import random
 import time
-import requests
-from io import BytesIO
 
 # --- CLOUD CONFIGURATION ---
 if "GEMINI_API_KEY" in st.secrets:
@@ -14,7 +12,6 @@ else:
 # --- APP SETUP ---
 st.set_page_config(page_title="Soulmate Sketcher", page_icon="🔮")
 
-# Use Session State to track current screen and answers
 if 'step' not in st.session_state:
     st.session_state.step = 1
 if 'answers' not in st.session_state:
@@ -32,7 +29,7 @@ def reset():
 # --- STEP 1: WELCOME ---
 if st.session_state.step == 1:
     st.title("🔮 The Soulmate Sketcher")
-    st.write("Using Gemini to align your cosmic vibrations and sketch your true soulmate.")
+    st.write("Using Gemini 3 Flash to align your cosmic vibrations and sketch your true soulmate.")
     st.info("No email required. No login. Just destiny.")
     if st.button("Begin the Alignment 🚀"):
         next_step()
@@ -40,97 +37,93 @@ if st.session_state.step == 1:
 # --- STEP 2: ELEMENT ---
 elif st.session_state.step == 2:
     st.subheader("Step 1: The Elemental Core")
-    choice = st.radio("Which element matches your personality?", ["Fire", "Water", "Earth", "Air", "Quintessence"])
+    choice = st.radio("Which element matches your personality?", ["Fire 🔥", "Water 💧", "Earth 🌍", "Air ☁️", "Quintessence ✨"])
     if st.button("Next ➡️"):
         st.session_state.answers['element'] = choice
         next_step()
 
-# --- STEP 3: PHYSICAL TRAITS (NEW) ---
+# --- STEP 3: PHYSICAL TRAITS ---
 elif st.session_state.step == 3:
     st.subheader("Step 2: Physical Resonance")
-    st.write("Our sketcher needs to focus on a specific energy profile.")
     choice = st.selectbox("Which eye color do you find most 'soul-piercing'?", ["Deep Brown", "Ocean Blue", "Emerald Green", "Mystic Grey", "Amber/Gold"])
     if st.button("Lock in DNA Profile 🧬"):
         st.session_state.answers['eyes'] = choice
         next_step()
 
-# --- STEP 4: ZODIAC ALIGNMENT (NEW) ---
+# --- STEP 4: ZODIAC ALIGNMENT ---
 elif st.session_state.step == 4:
     st.subheader("Step 3: Celestial Timing")
-    choice = st.select_slider("What is your level of belief in Astrological compatibility?", options=["Skeptic", "Curious", "Believer", "Devoted", "I am the Stars"])
+    choice = st.select_slider("How strongly do the stars influence your path?", options=["Skeptic", "Curious", "Believer", "Devoted", "I am the Stars"])
     if st.button("Check Constellations 🌌"):
         st.session_state.answers['zodiac'] = choice
         next_step()
 
-# --- STEP 5: LOVE LANGUAGE (NEW) ---
+# --- STEP 5: PERSONALITY (NEW) ---
 elif st.session_state.step == 5:
-    st.subheader("Step 4: The Language of the Heart")
+    st.subheader("Step 4: The Introvert/Extrovert Scale")
+    choice = st.radio("Where do you recharge your energy?", ["In total solitude", "With a small group", "At a crowded party", "It depends on the moon"])
+    if st.button("Analyze Energy 🔋"):
+        st.session_state.answers['energy'] = choice
+        next_step()
+
+# --- STEP 6: LOVE LANGUAGE ---
+elif st.session_state.step == 6:
+    st.subheader("Step 5: The Language of the Heart")
     choice = st.radio("How do you best receive affection?", ["Words of Affirmation", "Acts of Service", "Physical Touch", "Receiving Gifts", "Quality Time"])
     if st.button("Vibe Check 💓"):
         st.session_state.answers['love_language'] = choice
         next_step()
 
-# --- STEP 6: DYNAMIC (MOVED) ---
-elif st.session_state.step == 6:
-    st.subheader("Step 5: The Ideal Connection")
-    choice = st.radio("What's your ideal relationship dynamic?", ["Partnership", "Friendship", "Adventure", "Deep connection", "Balanced growth"])
-    if st.button("Finalize Connection 🎯"):
-        st.session_state.answers['dynamic'] = choice
-        next_step()
-
-# --- STEP 7: MORAL ALIGNMENT (NEW) ---
+# --- STEP 7: HOBBIES (NEW) ---
 elif st.session_state.step == 7:
-    st.subheader("Step 6: The Final Frequency")
-    choice = st.radio("In a crisis, what is your first instinct?", ["Protect others", "Solve the puzzle", "Keep the peace", "Take the lead", "Observe and learn"])
-    if st.button("Generate My Sketch ✨"):
-        st.session_state.answers['instinct'] = choice
+    st.subheader("Step 6: Harmonious Activities")
+    choice = st.multiselect("Pick two activities for a perfect Saturday:", ["Hiking", "Gaming", "Cooking", "Sleeping", "Time Travel", "Napping"])
+    if st.button("Sync Lifestyles ⛵"):
+        st.session_state.answers['hobby'] = choice
         next_step()
 
-# --- STEP 8: GENERATION ---
+# --- STEP 8: MORAL ALIGNMENT ---
 elif st.session_state.step == 8:
+    st.subheader("Step 7: The Final Frequency")
+    choice = st.radio("What is your greatest strength?", ["Loyalty", "Intelligence", "Bravery", "Compassion", "Wit"])
+    if st.button("Complete Pattern 🎯"):
+        st.session_state.answers['strength'] = choice
+        next_step()
+
+# --- STEP 9: GENERATION ---
+elif st.session_state.step == 9:
     st.write("### ✨ Channeling the Stars...")
-    st.write("_Processing elemental core, physical resonance, and celestial timing..._")
+    st.write("_Processing your unique spiritual signature..._")
     progress_bar = st.progress(0)
     for percent_complete in range(100):
-        time.sleep(0.03) # Slightly slower for "dramatic" effect
+        time.sleep(0.04) # Slower for suspense
         progress_bar.progress(percent_complete + 1)
     
-    # --- THE PRANK LOGIC ---
-    funny_subjects = ["a goofy monkey", "a clown on a unicycle", "a stick figure", "a banana with human legs", "a confused llama", "a potato in a suit"]
-    subject = random.choice(funny_subjects)
+    # --- FIXED PRANK LOGIC ---
+    # Using reliable funny images that won't break
+    funny_results = [
+        {"name": "The Executive Primate", "url": "https://placedog.net/500/500?id=1", "msg": "A noble monkey in a tuxedo."},
+        {"name": "The Potassium King", "url": "https://placedog.net/500/500?id=2", "msg": "A nano-banana with surprisingly long legs."},
+        {"name": "The Minimalist", "url": "https://placedog.net/500/500?id=3", "msg": "A highly detailed stick figure named Gary."},
+        {"name": "The Honk Master", "url": "https://placedog.net/500/500?id=4", "msg": "A clown who is also a licensed accountant."}
+    ]
     
-    try:
-        model = genai.GenerativeModel('gemini-1.5-flash')
-        st.session_state.sketch_description = f"The stars revealed {subject} with {st.session_state.answers['eyes']} eyes!"
-        
-        # Pool of funny placeholder images
-        image_urls = [
-            "https://images.unsplash.com/photo-1540573133985-87b6da6d54a9?q=80&w=500", # Monkey
-            "https://images.unsplash.com/photo-1509248961158-e54f6934749c?q=80&w=500", # Clown
-            "https://images.unsplash.com/photo-1590634331662-634969243764?q=80&w=500", # Banana
-            "https://images.unsplash.com/photo-1516934023933-58719c19ba19?q=80&w=500"  # Llama/Animal
-        ]
-        st.session_state.final_image = random.choice(image_urls)
-        
-        st.session_state.step = 9
-        st.rerun()
+    result = random.choice(funny_results)
+    st.session_state.final_image = result['url']
+    st.session_state.oracle_msg = result['msg']
+    
+    st.session_state.step = 10
+    st.rerun()
 
-    except Exception as e:
-        st.error(f"The cosmic connection timed out! Error: {e}")
-        if st.button("Try Again"):
-            reset()
-
-# --- STEP 9: THE REVEAL ---
-elif st.session_state.step == 9:
+# --- STEP 10: THE REVEAL ---
+elif st.session_state.step == 10:
     st.balloons()
     st.header("✨ Your Soulmate Sketch is Ready!")
     
-    if 'final_image' in st.session_state:
-        st.image(st.session_state.final_image, caption=f"Soulmate ID: {random.randint(10000, 99999)}")
-        if 'sketch_description' in st.session_state:
-            st.write(f"**Oracle Insight:** {st.session_state.sketch_description}")
+    st.image(st.session_state.final_image, caption=f"Soulmate ID: {random.randint(10000, 99999)}")
+    st.subheader(f"Oracle Insight: {st.session_state.oracle_msg}")
     
-    st.write(f"The stars have spoken. Based on your {st.session_state.answers['element']} energy and {st.session_state.answers['love_language']} heart, your destiny is clear.")
+    st.write(f"The stars have spoken. Your {st.session_state.answers['element']} energy has led you to this moment. Compatibility: **99.8%**")
     
     if st.button("🔄 Clear & Restart"):
         reset()
