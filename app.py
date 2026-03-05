@@ -22,10 +22,9 @@ def next_step():
     st.session_state.step += 1
 
 def reset(): 
-    st.session_state.step = 1
-    st.session_state.answers = {}
-    if 'final_image' in st.session_state:
-        del st.session_state.final_image
+    for key in list(st.session_state.keys()):
+        del st.session_state[key]
+    st.rerun()
 
 # --- STEP 1: WELCOME ---
 if st.session_state.step == 1:
@@ -35,7 +34,7 @@ if st.session_state.step == 1:
     if st.button("Begin the Alignment 🚀"):
         next_step()
 
-# --- STEP 2: USER SEX (NEW) ---
+# --- STEP 2: USER SEX ---
 elif st.session_state.step == 2:
     st.subheader("Profile Initialization")
     choice = st.radio("What is your sex/gender identity?", ["Male", "Female", "Non-Binary / Other"])
@@ -43,7 +42,7 @@ elif st.session_state.step == 2:
         st.session_state.answers['user_sex'] = choice
         next_step()
 
-# --- STEP 3: PREFERENCE (NEW) ---
+# --- STEP 3: PREFERENCE ---
 elif st.session_state.step == 3:
     st.subheader("Seeking Connection")
     choice = st.radio("What is your soulmate preference?", ["Male", "Female", "Doesn't Matter / All"])
@@ -51,17 +50,15 @@ elif st.session_state.step == 3:
         st.session_state.answers['preference'] = choice
         next_step()
 
-# --- STEP 4: BIRTHDATE (NEW) ---
+# --- STEP 4: BIRTHDATE ---
 elif st.session_state.step == 4:
     st.subheader("Temporal Alignment")
-    st.write("Your birth date determines your spiritual house.")
-    # Standard calendar widget
     dob = st.date_input("When were you born?", min_value=date(1940, 1, 1), max_value=date.today())
     if st.button("Sync Timeline 📅"):
-        st.session_state.answers['birthdate'] = dob
+        st.session_state.answers['birthdate'] = str(dob)
         next_step()
 
-# --- STEP 5: ELEMENT ---
+# --- STEPS 5-10: COSMIC QUESTIONS ---
 elif st.session_state.step == 5:
     st.subheader("Elemental Core")
     choice = st.radio("Which element matches your personality?", ["Fire 🔥", "Water 💧", "Earth 🌍", "Air ☁️", "Quintessence ✨"])
@@ -69,7 +66,6 @@ elif st.session_state.step == 5:
         st.session_state.answers['element'] = choice
         next_step()
 
-# --- STEP 6-10: LOGICAL QUESTIONS ---
 elif st.session_state.step == 6:
     st.subheader("Physical Resonance")
     choice = st.selectbox("Which eye color do you find most 'soul-piercing'?", ["Deep Brown", "Ocean Blue", "Emerald Green", "Mystic Grey", "Amber/Gold"])
@@ -86,7 +82,7 @@ elif st.session_state.step == 7:
 
 elif st.session_state.step == 8:
     st.subheader("Energy Source")
-    choice = st.radio("Where do you recharge?", ["In solitude", "With a small group", "At a party", "It depends on the moon"])
+    choice = st.radio("Where do you recharge?", ["In solitude", "With a small group", "At a party", "The moon decides"])
     if st.button("Analyze Energy 🔋"):
         st.session_state.answers['energy'] = choice
         next_step()
@@ -99,28 +95,48 @@ elif st.session_state.step == 9:
         next_step()
 
 elif st.session_state.step == 10:
-    st.subheader("The Ideal Connection")
-    choice = st.radio("What's your relationship goal?", ["Partnership", "Friendship", "Adventure", "Deep connection", "Growth"])
-    if st.button("Finalize Connection 🎯"):
-        st.session_state.answers['dynamic'] = choice
+    st.subheader("The Final Frequency")
+    choice = st.radio("What is your greatest strength?", ["Loyalty", "Intelligence", "Bravery", "Compassion", "Wit"])
+    if st.button("Generate My Sketch ✨"):
+        st.session_state.answers['strength'] = choice
         next_step()
 
-# --- STEP 11: GENERATION ---
+# --- STEP 11: GENERATION (THE STUCK SCREEN FIX) ---
 elif st.session_state.step == 11:
     st.write("### ✨ Channeling the Stars...")
-    st.write(f"_Analyzing a {st.session_state.answers['user_sex']} soul seeking {st.session_state.answers['preference']}..._")
+    st.write(f"_Analyzing a {st.session_state.answers.get('user_sex', 'unique')} soul seeking {st.session_state.answers.get('preference', 'connection')}..._")
+    
     progress_bar = st.progress(0)
     for percent_complete in range(100):
-        time.sleep(0.04) 
+        time.sleep(0.02) 
         progress_bar.progress(percent_complete + 1)
     
-    # FIXED: Using high-quality placeholder images that are stable
+    # Prank library
     funny_results = [
-        {"name": "The Executive Primate", "url": "https://placedog.net/500/500?id=10", "msg": "A noble monkey who enjoys fine dining."},
-        {"name": "The Potassium King", "url": "https://placedog.net/500/500?id=20", "msg": "A nano-banana with surprisingly athletic legs."},
-        {"name": "The Minimalist", "url": "https://placedog.net/500/500?id=30", "msg": "A stick figure named Gary who is very good at listening."},
-        {"name": "The Honk Master", "url": "https://placedog.net/500/500?id=40", "msg": "A clown who is also a licensed tax attorney."}
+        {"url": "https://placedog.net/500/500?id=15", "msg": "A noble monkey who only wears designer tuxedos."},
+        {"url": "https://placedog.net/500/500?id=25", "msg": "A nano-banana with an Olympic-level marathon stride."},
+        {"url": "https://placedog.net/500/500?id=35", "msg": "Gary the Stick Figure. He has a great personality."},
+        {"url": "https://placedog.net/500/500?id=45", "msg": "A clown who just passed their CPA exam."}
     ]
     
-    result = random.choice(funny_results)
-    st.session_state.final_image = result['url']
+    selected = random.choice(funny_results)
+    st.session_state.final_image = selected['url']
+    st.session_state.oracle_msg = selected['msg']
+    
+    # Force the step update and rerun
+    st.session_state.step = 12
+    st.rerun()
+
+# --- STEP 12: THE REVEAL ---
+elif st.session_state.step == 12:
+    st.balloons()
+    st.header("✨ Your Soulmate Sketch is Ready!")
+    
+    st.image(st.session_state.final_image, caption=f"Soulmate ID: {random.randint(10000, 99999)}")
+    st.subheader(f"Oracle Insight: {st.session_state.oracle_msg}")
+    
+    st.write(f"The stars have spoken. Based on your {st.session_state.answers.get('element', 'cosmic')} energy and your birthdate, this is your perfect match.")
+    st.write("Compatibility Score: **99.9%**")
+    
+    if st.button("🔄 Clear & Restart"):
+        reset()
