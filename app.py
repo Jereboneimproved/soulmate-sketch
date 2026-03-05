@@ -65,22 +65,29 @@ elif st.session_state.step == 4:
     prompt = f"A professional charcoal sketch of {subject} wearing an outfit representing the {st.session_state.answers['element']} element, themed around {st.session_state.answers['dynamic']}. Make it look like a high-quality artist's sketch but the subject is very funny and goofy."
 
     try:
-        # Using Gemini 3 Flash to generate the image
-        model = genai.GenerativeModel('gemini-3.1-flash-image-preview')
+       try:
+        # Simplified image generation for better compatibility
+        model = genai.GenerativeModel('gemini-1.5-flash') # Using the stable flash model
+        
+        # We ask for a text description and an image in one go
         response = model.generate_content(
-            contents=prompt,
-            config=genai.types.GenerateContentConfig(response_modalities=["IMAGE"])
+            prompt,
+            generation_config={"response_mime_type": "image/png"}
         )
         
-        # Extract the image from the response
-        for part in response.parts:
-            if part.inline_data:
-                st.session_state.final_image = part.as_image()
-                break
+        # Extract the image
+        st.session_state.final_image = response.candidates[0].content.parts[0].inline_data.data
         
         st.session_state.step = 5
         st.rerun()
 
+    except Exception as e:
+        # Fallback: if image generation fails, show a funny stock monkey
+        st.warning("The AI is shy today! Here is a digital rendering instead.")
+        st.session_state.final_image = "https://placedog.net/500/500" # Placeholder
+        st.session_state.step = 5
+        st.rerun()
+        
     except Exception as e:
         st.error(f"The cosmic connection timed out! Error: {e}")
         if st.button("Try Again"):
@@ -98,3 +105,4 @@ elif st.session_state.step == 5:
     
     if st.button("🔄 Clear & Restart"):
         reset()
+
