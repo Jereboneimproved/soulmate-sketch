@@ -80,45 +80,46 @@ elif st.session_state.step == 10:
     st.session_state.answers['strength'] = st.radio("Your greatest strength?", ["Loyalty", "Intelligence", "Bravery", "Wit"])
     if st.button("Generate My Sketch ✨"): next_step()
 
-# --- STEP 11: THE FACE REVEAL LOGIC ---
+# --- STEP 11: THE CHARACTER REVEAL ---
 elif st.session_state.step == 11:
-    st.write("### ✨ Channeling the Stars...")
-    st.write(f"_Finding the one for a {st.session_state.answers.get('user_sex')} soul..._")
+    st.write("### ✨ Universal Alignment in Progress...")
+    st.write(f"_Searching the multiverse for a match for {st.session_state.answers.get('user_sex')}..._")
     
     progress_bar = st.progress(0)
     for i in range(100):
         time.sleep(0.02)
         progress_bar.progress(i + 1)
     
-    # Curated Library of Expressive/Funny Face IDs
-    # Using a service that generates random human faces based on specific 'funny' seeds
-    face_seeds = [
-        "crazy", "funny", "silly", "expression", "shock", "goofy", 
-        "surprised", "weird", "laughing", "confused", "staring"
+    # YOUR CUSTOM CHARACTER LIBRARY
+    # Note: Use high-quality, direct .jpg links for these to work!
+    character_library = [
+        {"name": "Chucky", "url": "https://m.media-amazon.com/images/I/71YyM9e6KSL._AC_SL1500_.jpg", "vibe": "a tiny, stabby ginger doll"},
+        {"name": "Jason Voorhees", "url": "https://m.media-amazon.com/images/I/41K6B6Z0W1L.jpg", "vibe": "a hockey fan who never learned to swim"},
+        {"name": "Michael Myers", "url": "https://m.media-amazon.com/images/I/61k-oXW4n2L._AC_SL1000_.jpg", "vibe": "a very quiet man in a painted William Shatner mask"},
+        {"name": "Freddy Krueger", "url": "https://m.media-amazon.com/images/I/81vR9x-S0rL._AC_SL1500_.jpg", "vibe": "the ultimate dream-crashing burnt pizza man"},
+        {"name": "Killer Clown", "url": "https://m.media-amazon.com/images/I/71o0T+R6t2L._AC_SL1500_.jpg", "vibe": "a circus reject with bad intentions"},
+        {"name": "Blacula", "url": "https://m.media-amazon.com/images/I/51G8H9-R86L.jpg", "vibe": "the smoothest vampire in the history of the night"},
+        {"name": "Klingon", "url": "https://m.media-amazon.com/images/I/51C+D-S6mAL.jpg", "vibe": "a warrior who takes dating very, very seriously"},
+        {"name": "Pizza the Hutt", "url": "https://m.media-amazon.com/images/I/51H-O-R6t2L.jpg", "vibe": "literally a giant, melting pepperoni pizza"},
+        {"name": "Pee Wee Herman", "url": "https://m.media-amazon.com/images/I/51C+S-S6mAL.jpg", "vibe": "a man who loves his bike more than life itself"},
+        {"name": "Chewbacca", "url": "https://m.media-amazon.com/images/I/71Y-o-R6t2L.jpg", "vibe": "a walking carpet with a heart of gold"},
+        {"name": "Donald J. Trump", "url": "https://www.whitehouse.gov/wp-content/uploads/2021/01/45_donald_trump.jpg", "vibe": "the most tremendous soulmate you've ever seen, believe me"},
+        {"name": "Ashy Larry", "url": "https://m.media-amazon.com/images/I/51H-S-R6t2L.jpg", "vibe": "a man who desperately needs a gallon of lotion"}
     ]
-    random_seed = random.choice(face_seeds) + str(random.randint(1, 100))
     
-    # This URL specifically pulls from a human face database using a random seed
-    st.session_state.final_image = f"https://robohash.org/{random_seed}.png?set=set4" 
-    # NOTE: set4 creates hilarious 'Kitten/Humanoid' faces. 
-    # If you want REAL funny human photos, use the library below:
+    # Pick a random character
+    selected = random.choice(character_library)
+    st.session_state.final_image = selected['url']
+    st.session_state.char_name = selected['name']
     
-    funny_human_photos = [
-        "https://images.unsplash.com/photo-1544723795-3fb3afef99a3?w=500", # Surprise
-        "https://images.unsplash.com/photo-1595152772835-219674b2a8a6?w=500", # Goofy Smile
-        "https://images.unsplash.com/photo-1520451644838-906a72aa7c86?w=500", # Confusion
-        "https://images.unsplash.com/photo-1599566150163-29194dcaad36?w=500"  # Intense Stare
-    ]
-    # To use real photos instead, uncomment the line below:
-    # st.session_state.final_image = random.choice(funny_human_photos)
-
     try:
+        # Gemini 3 Flash writes the funny verdict
         model = genai.GenerativeModel('gemini-3-flash')
-        prompt = f"Write a hilarious 1-sentence soulmate reading. They picked {st.session_state.answers.get('element')} and were born on {st.session_state.answers.get('birthdate')}. Their soulmate is a 'magnificent weirdo'. Be witty."
+        prompt = f"Write a funny 1-sentence soulmate reading for a {st.session_state.answers.get('user_sex')} who was just matched with {selected['name']} ({selected['vibe']}). Mention their element {st.session_state.answers.get('element')} and birthdate {st.session_state.answers.get('birthdate')}."
         response = model.generate_content(prompt)
         st.session_state.oracle_msg = response.text
     except:
-        st.session_state.oracle_msg = "The stars were too stunned by this beauty to speak."
+        st.session_state.oracle_msg = f"The stars aligned you with {selected['name']}. Good luck, you're going to need it."
 
     st.session_state.step = 12
     st.rerun()
@@ -139,4 +140,5 @@ elif st.session_state.step == 12:
     
     if st.button("🔄 Clear & Restart"):
         reset()
+
 
