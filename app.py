@@ -93,18 +93,21 @@ elif st.session_state.step == 11:
     # YOUR CUSTOM CHARACTER LIBRARY
     # Note: Use high-quality, direct .jpg links for these to work!
     character_library = [
-        {"name": "Chucky", "url": "https://m.media-amazon.com/images/I/71YyM9e6KSL._AC_SL1500_.jpg", "vibe": "a tiny, stabby ginger doll"},
-        {"name": "Jason Voorhees", "url": "https://m.media-amazon.com/images/I/41K6B6Z0W1L.jpg", "vibe": "a hockey fan who never learned to swim"},
-        {"name": "Michael Myers", "url": "https://m.media-amazon.com/images/I/61k-oXW4n2L._AC_SL1000_.jpg", "vibe": "a very quiet man in a painted William Shatner mask"},
-        {"name": "Freddy Krueger", "url": "https://m.media-amazon.com/images/I/81vR9x-S0rL._AC_SL1500_.jpg", "vibe": "the ultimate dream-crashing burnt pizza man"},
-        {"name": "Killer Clown", "url": "https://m.media-amazon.com/images/I/71o0T+R6t2L._AC_SL1500_.jpg", "vibe": "a circus reject with bad intentions"},
-        {"name": "Blacula", "url": "https://m.media-amazon.com/images/I/51G8H9-R86L.jpg", "vibe": "the smoothest vampire in the history of the night"},
-        {"name": "Klingon", "url": "https://m.media-amazon.com/images/I/51C+D-S6mAL.jpg", "vibe": "a warrior who takes dating very, very seriously"},
-        {"name": "Pizza the Hutt", "url": "https://m.media-amazon.com/images/I/51H-O-R6t2L.jpg", "vibe": "literally a giant, melting pepperoni pizza"},
-        {"name": "Pee Wee Herman", "url": "https://m.media-amazon.com/images/I/51C+S-S6mAL.jpg", "vibe": "a man who loves his bike more than life itself"},
-        {"name": "Chewbacca", "url": "https://m.media-amazon.com/images/I/71Y-o-R6t2L.jpg", "vibe": "a walking carpet with a heart of gold"},
-        {"name": "Donald J. Trump", "url": "https://www.whitehouse.gov/wp-content/uploads/2021/01/45_donald_trump.jpg", "vibe": "the most tremendous soulmate you've ever seen, believe me"},
-        {"name": "Ashy Larry", "url": "https://m.media-amazon.com/images/I/51H-S-R6t2L.jpg", "vibe": "a man who desperately needs a gallon of lotion"}
+        {"name": "Chucky", "url": "https://miro.medium.com/v2/resize:fit:1100/format:webp/0*q7vXds1n1-bYshJv.jpg", "vibe": "a tiny, stabby ginger doll"},
+        {"name": "Jason Voorhees", "url": "https://en.wikipedia.org/wiki/Jason_Voorhees#/media/File:Jason_Voorhees_(Ken_Kirzinger).jpg", "vibe": "a hockey fan who never learned to swim"},
+        {"name": "Michael Myers", "url": "https://en.wikipedia.org/wiki/Michael_Myers_(Halloween)#/media/File:MichaelMyers2018.jpg", "vibe": "a very quiet man in a painted William Shatner mask"},
+        {"name": "Freddy Krueger", "url": "https://en.wikipedia.org/wiki/Freddy_Krueger#/media/File:Freddy_Krueger_(Robert_Englund).jpg", "vibe": "the ultimate dream-crashing burnt pizza man"},
+        {"name": "Killer Clown", "url": "https://en.wikipedia.org/wiki/Pennywise#/media/File:Pennywise_Skarsgard_and_Curry.png", "vibe": "a circus reject with bad intentions"},
+        {"name": "Blacula", "url": "https://static.wikia.nocookie.net/monster-and-slashers/images/9/9d/Blacula_%282%29ac.JPG/revision/latest?cb=20190804034633", "vibe": "the smoothest vampire in the history of the night"},
+        {"name": "Klingon", "url": "https://en.wikipedia.org/wiki/Worf#/media/File:WorfTNG.jpg", "vibe": "a warrior who takes dating very, very seriously"},
+        {"name": "Pizza the Hutt", "url": "https://villains.fandom.com/wiki/Pizza_the_Hutt?file=HuttHD.jpg", "vibe": "literally a giant, melting pepperoni pizza"},
+        {"name": "Pee Wee Herman", "url": "https://en.wikipedia.org/wiki/Pee-wee_Herman#/media/File:Pee-Wee_Herman_(1988).jpg", "vibe": "a man who loves his bike more than life itself"},
+        {"name": "Chewbacca", "url": "https://specials-images.forbesimg.com/dam/imageserve/958761228/960x0.jpg", "vibe": "a walking carpet with a heart of gold"},
+        {"name": "Angela Bassett", "url": "https://variety.com/wp-content/uploads/2024/09/JCO_7588_a3bd08.jpg", "vibe": "the most tremendous soulmate you've ever seen, believe me"},
+        {"name": "Tyrone Biggums", "url": "https://comicvine.gamespot.com/a/uploads/original/2/29172/562318-tyrone_biggums2.jpg", "vibe": "a man who desperately needs sizzle candy"},
+        {"name": "Captain Jack Sparrow", "url": "https://static.wikia.nocookie.net/pirates/images/e/ea/DMTNT_Jack_Sparrow_cropped.png/revision/latest?cb=20251003064720", "vibe": "you have a ridiculously high regard for fate, mate"},
+        {"name": "Diva Plavalaguna", "url": "https://www.reddit.com/media?url=https%3A%2F%2Fi.redd.it%2Fjcsw4h2ifksd1.jpeg", "vibe": "She needs your help and your ______"},
+        {"name": "Ghost Face", "url": "https://static.wikia.nocookie.net/scream/images/a/a5/Ghostface-Profile.jpg", "vibe": "What's your favorite movie?"}
     ]
     
     # Pick a random character
@@ -140,5 +143,6 @@ elif st.session_state.step == 12:
     
     if st.button("🔄 Clear & Restart"):
         reset()
+
 
 
