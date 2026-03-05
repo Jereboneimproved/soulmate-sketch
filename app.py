@@ -80,30 +80,45 @@ elif st.session_state.step == 10:
     st.session_state.answers['strength'] = st.radio("Your greatest strength?", ["Loyalty", "Intelligence", "Bravery", "Wit"])
     if st.button("Generate My Sketch ✨"): next_step()
 
-# --- STEP 11: THE STABLE GENERATION ---
+# --- STEP 11: THE FACE REVEAL LOGIC ---
 elif st.session_state.step == 11:
     st.write("### ✨ Channeling the Stars...")
-    st.write(f"_Analyzing a {st.session_state.answers.get('user_sex')} soul seeking {st.session_state.answers.get('preference')}..._")
+    st.write(f"_Finding the one for a {st.session_state.answers.get('user_sex')} soul..._")
     
     progress_bar = st.progress(0)
     for i in range(100):
         time.sleep(0.02)
         progress_bar.progress(i + 1)
     
-    # Stable library of funny human faces (using IDs to ensure they work)
-    face_ids = list(range(1, 51))
-    selected_id = random.choice(face_ids)
+    # Curated Library of Expressive/Funny Face IDs
+    # Using a service that generates random human faces based on specific 'funny' seeds
+    face_seeds = [
+        "crazy", "funny", "silly", "expression", "shock", "goofy", 
+        "surprised", "weird", "laughing", "confused", "staring"
+    ]
+    random_seed = random.choice(face_seeds) + str(random.randint(1, 100))
     
-    # We use a reliable placeholder service for funny faces
-    st.session_state.final_image = f"https://picsum.photos/500/500?random={selected_id}"
+    # This URL specifically pulls from a human face database using a random seed
+    st.session_state.final_image = f"https://robohash.org/{random_seed}.png?set=set4" 
+    # NOTE: set4 creates hilarious 'Kitten/Humanoid' faces. 
+    # If you want REAL funny human photos, use the library below:
     
+    funny_human_photos = [
+        "https://images.unsplash.com/photo-1544723795-3fb3afef99a3?w=500", # Surprise
+        "https://images.unsplash.com/photo-1595152772835-219674b2a8a6?w=500", # Goofy Smile
+        "https://images.unsplash.com/photo-1520451644838-906a72aa7c86?w=500", # Confusion
+        "https://images.unsplash.com/photo-1599566150163-29194dcaad36?w=500"  # Intense Stare
+    ]
+    # To use real photos instead, uncomment the line below:
+    # st.session_state.final_image = random.choice(funny_human_photos)
+
     try:
         model = genai.GenerativeModel('gemini-3-flash')
-        prompt = f"Write a funny 1-sentence soulmate reading for a {st.session_state.answers.get('user_sex')} born on {st.session_state.answers.get('birthdate')}. Their soulmate is a 'magnificent weirdo'. Mention their {st.session_state.answers.get('element')} energy."
+        prompt = f"Write a hilarious 1-sentence soulmate reading. They picked {st.session_state.answers.get('element')} and were born on {st.session_state.answers.get('birthdate')}. Their soulmate is a 'magnificent weirdo'. Be witty."
         response = model.generate_content(prompt)
         st.session_state.oracle_msg = response.text
     except:
-        st.session_state.oracle_msg = "The stars were too stunned to speak, but the image of your destiny is clear."
+        st.session_state.oracle_msg = "The stars were too stunned by this beauty to speak."
 
     st.session_state.step = 12
     st.rerun()
@@ -112,8 +127,16 @@ elif st.session_state.step == 11:
 elif st.session_state.step == 12:
     st.balloons()
     st.header("✨ Your Soulmate Sketch is Ready!")
-    st.image(st.session_state.final_image, caption=f"Soulmate ID: {random.randint(10000, 99999)}")
+    
+    # Centering the funny face
+    st.image(st.session_state.final_image, use_container_width=True)
+    
     st.subheader("The Oracle's Verdict:")
-    st.write(st.session_state.oracle_msg)
-    st.write("Compatibility Score: **99.9%**")
-    if st.button("🔄 Clear & Restart"): reset()
+    st.info(st.session_state.oracle_msg)
+    
+    st.write(f"**Compatibility Score:** {random.randint(98, 99)}.{random.randint(1, 9)}%")
+    st.caption(f"Soulmate ID: {random.randint(10000, 99999)}")
+    
+    if st.button("🔄 Clear & Restart"):
+        reset()
+
